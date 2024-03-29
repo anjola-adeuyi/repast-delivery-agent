@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import delivery.agents.DeliveryAgent;
 import gov.nasa.worldwind.WorldWind;
@@ -28,18 +31,39 @@ public class DeliveryAgentStyle implements MarkStyle<DeliveryAgent> {
 
 	private Map<String, WWTexture> textureMap;
 
-	public DeliveryAgentStyle() {
+	private static final Logger logger = Logger.getLogger(DeliveryAgentStyle.class.getName());
 
+	public DeliveryAgentStyle() {
 		textureMap = new HashMap<String, WWTexture>();
 
 		BufferedImage image = PatternFactory.createPattern(PatternFactory.PATTERN_CIRCLE, new Dimension(50, 50), 0.7f,
 				Color.BLUE);
 
-		textureMap.put("blue circle", new BasicWWTexture(image));
+		String autonomousFileName = "icons/smart-car.png";
+		String humanOperatedFileName = "icons/delivery-man.png";
 
-		image = PatternFactory.createPattern(PatternFactory.PATTERN_CIRCLE, new Dimension(50, 50), 0.7f, Color.YELLOW);
+		URL localAutonomousUrl = WorldWind.getDataFileStore().requestFile(autonomousFileName);
+		logger.info(localAutonomousUrl);
+		if (localAutonomousUrl != null) {
+			textureMap.put("autonomous", new BasicWWTexture(localAutonomousUrl, false));
+		} else {
+			textureMap.put("autonomous", new BasicWWTexture(image));
 
-		textureMap.put("yellow circle", new BasicWWTexture(image));
+			System.err.println("Error loading texture for autonomous" + ": File not found - " + localAutonomousUrl);
+		}
+
+		URL localHumanOperatedUrl = WorldWind.getDataFileStore().requestFile(humanOperatedFileName);
+		logger.info(localHumanOperatedUrl);
+		if (localHumanOperatedUrl != null) {
+			textureMap.put("human-operated", new BasicWWTexture(localHumanOperatedUrl, false));
+		} else {
+			image = PatternFactory.createPattern(PatternFactory.PATTERN_CIRCLE, new Dimension(50, 50), 0.7f,
+					Color.YELLOW);
+			textureMap.put("human-operated", new BasicWWTexture(image));
+
+			System.err.println(
+					"Error loading texture for human-operated" + ": File not found - " + localHumanOperatedUrl);
+		}
 	}
 
 	@Override
@@ -62,10 +86,11 @@ public class DeliveryAgentStyle implements MarkStyle<DeliveryAgent> {
 
 	@Override
 	public WWTexture getTexture(DeliveryAgent agent, WWTexture texture) {
+//		return textureMap.get("autonomous");
 		if (agent.isAutonomous) {
-			return textureMap.get("yellow circle");
+			return textureMap.get("autonomous");
 		} else {
-			return textureMap.get("yellow circle");
+			return textureMap.get("human-operated");
 		}
 	}
 

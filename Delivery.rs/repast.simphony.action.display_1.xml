@@ -1,14 +1,14 @@
 <repast.simphony.gis.visualization.engine.GISDisplayDescriptor simphonyVersion="2.10.0">
-  <name>Delivery Systems</name>
+  <name>Delivery System</name>
   <type>GIS 3D</type>
   <styles>
     <entry>
       <string>delivery.agents.Destination</string>
-      <string>repast.simphony.visualization.gis3D.style.DefaultMarkStyle</string>
+      <string>delivery.styles.DestinationStyle</string>
     </entry>
     <entry>
       <string>delivery.agents.DeliveryAgent</string>
-      <string>repast.simphony.visualization.gis3D.style.EditedMarkStyle</string>
+      <string>delivery.styles.DeliveryAgentStyle</string>
     </entry>
   </styles>
   <editedStyles>
@@ -18,13 +18,13 @@
     </entry>
     <entry>
       <string>delivery.agents.DeliveryAgent</string>
-      <string>delivery.agents.DeliveryAgent.style_0.xml</string>
+      <null/>
     </entry>
   </editedStyles>
   <netStyles>
     <entry>
       <string>Network</string>
-      <string>repast.simphony.visualization.gis3D.style.DefaultNetworkStyleGIS</string>
+      <string>delivery.styles.NetworkStyle</string>
     </entry>
   </netStyles>
   <editedNetStyles>
@@ -41,44 +41,92 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>85001482</hashCode>
+    <hashCode>370927709</hashCode>
   </schedParams>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>Place Names</string>
-      <int>5</int>
+      <string>USGS Topo Scanned Maps 1:24K</string>
+      <int>17</int>
     </entry>
     <entry>
       <string>Blue Marble May 2004</string>
-      <int>4</int>
+      <int>16</int>
     </entry>
     <entry>
-      <string>Scale bar</string>
-      <int>3</int>
+      <string>Stars</string>
+      <int>15</int>
     </entry>
     <entry>
       <string>delivery.agents.Destination</string>
-      <int>7</int>
+      <int>19</int>
     </entry>
     <entry>
-      <string>Network</string>
-      <int>6</int>
+      <string>Bing Imagery</string>
+      <int>14</int>
+    </entry>
+    <entry>
+      <string>Earth at Night</string>
+      <int>13</int>
     </entry>
     <entry>
       <string>World Map</string>
-      <int>2</int>
+      <int>12</int>
     </entry>
     <entry>
       <string>delivery.agents.DeliveryAgent</string>
-      <int>8</int>
+      <int>20</int>
     </entry>
     <entry>
-      <string>i-cubed Landsat</string>
-      <int>1</int>
+      <string>USGS Topo Scanned Maps 1:250K</string>
+      <int>11</int>
     </entry>
     <entry>
       <string>Compass</string>
+      <int>10</int>
+    </entry>
+    <entry>
+      <string>USGS Topo Base Map</string>
+      <int>9</int>
+    </entry>
+    <entry>
+      <string>Place Names</string>
+      <int>8</int>
+    </entry>
+    <entry>
+      <string>NASA Blue Marble Image</string>
+      <int>7</int>
+    </entry>
+    <entry>
+      <string>Atmosphere</string>
+      <int>6</int>
+    </entry>
+    <entry>
+      <string>Scale bar</string>
+      <int>5</int>
+    </entry>
+    <entry>
+      <string>Network</string>
+      <int>18</int>
+    </entry>
+    <entry>
+      <string>USGS Topo Scanned Maps 1:100K</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>USGS Topo Base Map Large Scale</string>
+      <int>3</int>
+    </entry>
+    <entry>
+      <string>USGS NAIP Plus</string>
+      <int>2</int>
+    </entry>
+    <entry>
+      <string>Political Boundaries</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>i-cubed Landsat</string>
       <int>0</int>
     </entry>
   </layerOrder>
@@ -122,7 +170,7 @@
   <trackAgents>false</trackAgents>
   <globeLayers>
     <entry>
-      <string>Place Names</string>
+      <string>USGS Topo Scanned Maps 1:24K</string>
       <boolean>true</boolean>
     </entry>
     <entry>
@@ -130,7 +178,15 @@
       <boolean>true</boolean>
     </entry>
     <entry>
-      <string>Scale bar</string>
+      <string>Stars</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Bing Imagery</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Earth at Night</string>
       <boolean>true</boolean>
     </entry>
     <entry>
@@ -138,11 +194,51 @@
       <boolean>true</boolean>
     </entry>
     <entry>
-      <string>i-cubed Landsat</string>
+      <string>USGS Topo Scanned Maps 1:250K</string>
       <boolean>true</boolean>
     </entry>
     <entry>
       <string>Compass</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>USGS Topo Base Map</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Place Names</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>NASA Blue Marble Image</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Atmosphere</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Scale bar</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>USGS Topo Scanned Maps 1:100K</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>USGS Topo Base Map Large Scale</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>USGS NAIP Plus</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>Political Boundaries</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>i-cubed Landsat</string>
       <boolean>true</boolean>
     </entry>
   </globeLayers>

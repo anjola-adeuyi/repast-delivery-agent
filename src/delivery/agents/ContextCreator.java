@@ -47,7 +47,7 @@ public class ContextCreator implements ContextBuilder {
 		DeliveryAgent humanOperatedAgent = new DeliveryAgent("Human Operated Agent", false);
 		context.add(humanOperatedAgent);
 
-		Point geom2 = fac.createPoint(new Coordinate(-88.5, 41.5));
+		Point geom2 = fac.createPoint(new Coordinate(-88.8570, 41.7432));
 		geography.move(humanOperatedAgent, geom2);
 
 		ReferencedEnvelope env = new ReferencedEnvelope(-89.4, -87.7236, 41.50, 42.1681, DefaultGeographicCRS.WGS84);
