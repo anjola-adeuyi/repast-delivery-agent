@@ -25,26 +25,44 @@ public class DeliveryAgent {
 	private String name;
 	private int destinationCount = 1;
 	private Destination lastDestination = null;
+	public boolean isAutonomous;
 
 	private static final Logger logger = Logger.getLogger(DeliveryAgent.class.getName());
 
-	public DeliveryAgent(String name) {
+	public DeliveryAgent(String name, boolean isAutonomous) {
 		this.name = name;
+		this.isAutonomous = isAutonomous;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1, priority = ScheduleParameters.FIRST_PRIORITY)
 	public void step() {
-		randomMove();
-		trackInCoverage();
-		dropDestination();
-
-		logger.info(destinationCount);
+		if (isAutonomous) {
+			autonomousMove();
+		} else {
+			humanOperatedMove();
+		}
 
 		try {
 			Thread.sleep(50);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void autonomousMove() {
+		randomMove();
+		trackInCoverage();
+		dropDestination();
+		logger.info(name);
+		logger.info(destinationCount);
+	}
+
+	private void humanOperatedMove() {
+		randomMove();
+		trackInCoverage();
+		dropDestination();
+		logger.info(name);
+		logger.info(destinationCount);
 	}
 
 	public void dropDestination() {

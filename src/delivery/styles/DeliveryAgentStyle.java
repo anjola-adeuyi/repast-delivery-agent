@@ -62,8 +62,11 @@ public class DeliveryAgentStyle implements MarkStyle<DeliveryAgent> {
 
 	@Override
 	public WWTexture getTexture(DeliveryAgent agent, WWTexture texture) {
-
-		return textureMap.get("yellow circle");
+		if (agent.isAutonomous) {
+			return textureMap.get("yellow circle");
+		} else {
+			return textureMap.get("yellow circle");
+		}
 	}
 
 	@Override

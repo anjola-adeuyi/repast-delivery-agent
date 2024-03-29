@@ -38,11 +38,17 @@ public class ContextCreator implements ContextBuilder {
 		NetworkBuilder<?> netBuilder = new NetworkBuilder<Object>("Network", context, true);
 		Network net = netBuilder.buildNetwork();
 
-		DeliveryAgent agent = new DeliveryAgent("Traveler");
-		context.add(agent);
+		DeliveryAgent autonomousAgent = new DeliveryAgent("Autonomous Agent", true);
+		context.add(autonomousAgent);
 
 		Point geom = fac.createPoint(new Coordinate(-88.8570, 41.7432));
-		geography.move(agent, geom);
+		geography.move(autonomousAgent, geom);
+
+		DeliveryAgent humanOperatedAgent = new DeliveryAgent("Human Operated Agent", false);
+		context.add(humanOperatedAgent);
+
+		Point geom2 = fac.createPoint(new Coordinate(-88.5, 41.5));
+		geography.move(humanOperatedAgent, geom2);
 
 		ReferencedEnvelope env = new ReferencedEnvelope(-89.4, -87.7236, 41.50, 42.1681, DefaultGeographicCRS.WGS84);
 
