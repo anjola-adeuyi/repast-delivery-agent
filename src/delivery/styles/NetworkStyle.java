@@ -19,7 +19,7 @@ public class NetworkStyle implements NetworkStyleGIS {
 
 	@Override
 	public Color getLineColor(RepastEdge edge) {
-		return Color.GREEN;
+		return Color.RED;
 	}
 
 	@Override

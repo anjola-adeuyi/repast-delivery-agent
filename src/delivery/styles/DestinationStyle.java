@@ -33,11 +33,11 @@ public class DestinationStyle implements MarkStyle<Destination> {
 		BufferedImage image = PatternFactory.createPattern(PatternFactory.PATTERN_CIRCLE, new Dimension(50, 50), 0.7f,
 				Color.BLUE);
 
-		textureMap.put("blue circle", new BasicWWTexture(image));
+		textureMap.put("autonomous", new BasicWWTexture(image));
 
 		image = PatternFactory.createPattern(PatternFactory.PATTERN_CIRCLE, new Dimension(50, 50), 0.7f, Color.YELLOW);
 
-		textureMap.put("yellow circle", new BasicWWTexture(image));
+		textureMap.put("human-operated", new BasicWWTexture(image));
 	}
 
 	@Override
@@ -59,8 +59,12 @@ public class DestinationStyle implements MarkStyle<Destination> {
 
 	@Override
 	public WWTexture getTexture(Destination agent, WWTexture texture) {
-
-		return textureMap.get("blue circle");
+//		return textureMap.get("yellow circle");
+		if (agent.isAutonomous) {
+			return textureMap.get("autonomous");
+		} else {
+			return textureMap.get("human-operated");
+		}
 	}
 
 	@Override

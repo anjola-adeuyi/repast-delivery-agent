@@ -37,7 +37,10 @@ public class DeliveryAgent {
 	@ScheduledMethod(start = 1, interval = 1, priority = ScheduleParameters.FIRST_PRIORITY)
 	public void step() {
 		if (isAutonomous) {
-			autonomousMove();
+//			autonomousMove();
+			for (int i = 0; i < 2; i++) { // Autonomous vehicles move twice in each time step
+				autonomousMove();
+			}
 		} else {
 			humanOperatedMove();
 		}
@@ -72,7 +75,7 @@ public class DeliveryAgent {
 
 		Coordinate loc = geography.getGeometry(this).getCoordinate();
 
-		Destination destination = new Destination(destinationCount);
+		Destination destination = new Destination(destinationCount, isAutonomous);
 		destinationCount++;
 
 		context.add(destination);
